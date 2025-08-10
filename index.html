@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Giảng Ngữ Pháp Tiếng Anh Lớp 7</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .presentation-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            min-height: 500px;
+            transition: opacity 0.5s ease-in-out;
+            position: relative;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .slide-content {
+            text-align: center;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .input-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .submit-btn {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .feedback-area {
+            margin-top: 20px;
+        }
+        .congrats-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+            display: none;
+        }
+        .multiple-choice-area {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .choice-btn {
+            width: 80%;
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s, border-color 0.3s;
+            text-align: left;
+        }
+        .choice-btn:hover {
+            background-color: #e9ecef;
+        }
+        .choice-btn.correct {
+            background-color: #28a745;
+            color: #fff;
+            border-color: #28a745;
+        }
+        .choice-btn.incorrect {
+            background-color: #dc3545;
+            color: #fff;
+            border-color: #dc3545;
+        }
+        .firework {
+            position: absolute;
+            background: #ff0;
+            border-radius: 50%;
+            opacity: 0;
+            animation: firework-anim 1s ease-out forwards;
+        }
+        @keyframes firework-anim {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+        .nav-btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #6c757d;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .nav-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+        }
+        .nav-btn:disabled {
+            background-color: #e2e6ea;
+            cursor: not-allowed;
+        }
+        .progress {
+            font-size: 1rem;
+            color: #6c757d;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 0: Giới thiệu -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h1>Xin chào các em!</h1>
+                <p>Cô là Nguyễn Thảo, cô sẽ đồng hành cùng các em trên chặng đường học ngữ pháp tiếng Anh lớp 7. Hôm nay chúng ta hãy cùng nhau tìm hiểu xem các em cần học những nội dung gì nhé!</p>
+            </div>
+        </div>
+        
+        <!-- Các slide giới thiệu khác tương tự... -->
+        
+        <!-- Slide 5: Bài tập - Hiện tại đơn -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập: Dịch câu sau sang tiếng Anh</h1>
+                <p>Bố của tôi thường xem TV vào buổi tối.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-5" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(5)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-5">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-5">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                        <!-- Các lựa chọn sẽ được tạo bằng JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Bài tập - Hiện tại tiếp diễn -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập: Dịch câu sau sang tiếng Anh</h1>
+                <p>Chúng tôi đang học tiếng Anh ngay bây giờ.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-6" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(6)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-6">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-6">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                        <!-- Các lựa chọn sẽ được tạo bằng JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Bài tập - Động từ khuyết thiếu -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>Bài Tập: Dịch câu sau sang tiếng Anh</h1>
+                <p>Bạn nên học tập chăm chỉ hơn.</p>
+                <div class="input-area">
+                    <input type="text" id="answer-7" placeholder="Nhập đáp án của bạn">
+                    <button class="submit-btn" onclick="submitAnswer(7)">Nộp bài</button>
+                </div>
+                <div class="feedback-area">
+                    <p class="congrats-message" id="congrats-7">Chúc mừng, đáp án chính xác!</p>
+                    <div class="multiple-choice-area" id="mc-7">
+                        <p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>
+                        <!-- Các lựa chọn sẽ được tạo bằng JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- HƯỚNG DẪN: Các slide từ 8 đến 39 sẽ được thêm vào đây. -->
+        <!-- Bạn hãy sao chép và dán cấu trúc slide tương tự như trên. -->
+
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="prevSlide()" id="prev-btn" disabled>Trước</button>
+        <span class="progress" id="progress-indicator">Slide 1/40</span>
+        <button class="nav-btn" onclick="nextSlide()" id="next-btn">Sau</button>
+    </div>
+
+    <script>
+        // JavaScript cho trình bày và hiệu ứng
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = 40; // Tổng số slide, bao gồm cả các slide trống
+        const progressIndicator = document.getElementById('progress-indicator');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const presentationContainer = document.querySelector('.presentation-container');
+
+        // Mảng chứa dữ liệu câu hỏi và đáp án cho 40 slide
+        // HÃY ĐIỀN THÊM CÁC CÂU HỎI VÀ ĐÁP ÁN VÀO ĐÂY
+        const slidesData = [
+            null, null, null, null, null, // Slides giới thiệu
+            { // Slide 5
+                vietnamese: 'Bố của tôi thường xem TV vào buổi tối.',
+                correct_answer: 'My father often watches TV in the evening.',
+                choices: [
+                    'My father often watches TV in the evening.',
+                    'My father is often watching TV in the evening.',
+                    'My father often watch TV in the evening.',
+                    'My father watches often TV in the evening.'
+                ]
+            },
+            { // Slide 6
+                vietnamese: 'Chúng tôi đang học tiếng Anh ngay bây giờ.',
+                correct_answer: 'We are learning English right now.',
+                choices: [
+                    'We are learning English right now.',
+                    'We learn English right now.',
+                    'We learning English right now.',
+                    'We is learning English right now.'
+                ]
+            },
+            { // Slide 7
+                vietnamese: 'Bạn nên học tập chăm chỉ hơn.',
+                correct_answer: 'You should study harder.',
+                choices: [
+                    'You should to study harder.',
+                    'You should study harder.',
+                    'You should studying harder.',
+                    'You must study harder.'
+                ]
+            },
+            // Thêm các câu hỏi và đáp án cho 32 slide còn lại ở đây
+            // Với cấu trúc tương tự: correct_answer và 4 choices
+            // ...
+        ];
+
+        function updateNavigation() {
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+            progressIndicator.textContent = `Slide ${currentSlide + 1}/${totalSlides}`;
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateNavigation();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function submitAnswer(slideIndex) {
+            const input = document.getElementById(`answer-${slideIndex}`);
+            const congratsMessage = document.getElementById(`congrats-${slideIndex}`);
+            const mcArea = document.getElementById(`mc-${slideIndex}`);
+            
+            if (!slidesData[slideIndex]) {
+                alert('Slide này không có bài tập.');
+                return;
+            }
+
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctText = slidesData[slideIndex].correct_answer.trim().toLowerCase();
+
+            // Reset UI
+            congratsMessage.style.display = 'none';
+            mcArea.style.display = 'none';
+            input.style.borderColor = '#ccc';
+
+            if (userAnswer === correctText) {
+                createFireworks();
+                congratsMessage.style.display = 'block';
+                input.style.borderColor = '#28a745';
+            } else {
+                input.style.borderColor = '#dc3545';
+                mcArea.style.display = 'flex';
+                renderMultipleChoice(slideIndex);
+            }
+        }
+
+        function renderMultipleChoice(slideIndex) {
+            const mcArea = document.getElementById(`mc-${slideIndex}`);
+            mcArea.innerHTML = '<p>Đáp án của bạn chưa đúng, hãy chọn câu trả lời chính xác:</p>';
+            
+            const choices = slidesData[slideIndex].choices;
+            const correctAnswer = slidesData[slideIndex].correct_answer;
+
+            choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.classList.add('choice-btn');
+                button.textContent = choice;
+                button.onclick = () => checkMultipleChoice(slideIndex, choice, correctAnswer, button);
+                mcArea.appendChild(button);
+            });
+        }
+
+        function checkMultipleChoice(slideIndex, userChoice, correctAnswer, button) {
+            const congratsMessage = document.getElementById(`congrats-${slideIndex}`);
+            const input = document.getElementById(`answer-${slideIndex}`);
+            const mcButtons = document.querySelectorAll(`#mc-${slideIndex} .choice-btn`);
+
+            mcButtons.forEach(btn => btn.disabled = true);
+
+            if (userChoice.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
+                createFireworks();
+                congratsMessage.textContent = 'Chúc mừng, đáp án chính xác!';
+                congratsMessage.style.display = 'block';
+                button.classList.add('correct');
+                input.style.borderColor = '#28a745';
+            } else {
+                congratsMessage.textContent = 'Đáp án chưa đúng. Vui lòng thử lại.';
+                congratsMessage.style.display = 'block';
+                button.classList.add('incorrect');
+                // Highlight the correct answer
+                mcButtons.forEach(btn => {
+                    if (btn.textContent.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+        }
+
+        function createFireworks() {
+            const numberOfFireworks = 30;
+            for (let i = 0; i < numberOfFireworks; i++) {
+                const firework = document.createElement('div');
+                firework.classList.add('firework');
+                firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                firework.style.left = `${Math.random() * 100}%`;
+                firework.style.top = `${Math.random() * 100}%`;
+                firework.style.animationDelay = `${Math.random() * 0.5}s`;
+                presentationContainer.appendChild(firework);
+                
+                firework.addEventListener('animationend', () => {
+                    firework.remove();
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlide(currentSlide);
+            updateNavigation();
+        });
+    </script>
+</body>
+</html>
